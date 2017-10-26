@@ -13,7 +13,7 @@ def get_asset(path):
 
 @app.route("/images/<path:path>")
 def get_images(path):
-	return app.send_static_file("images"+path)
+	return app.send_static_file("images/"+path)
 
 @app.route("/")
 def get_index():
