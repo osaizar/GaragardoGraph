@@ -52,7 +52,7 @@ def main():
     		piztuta=0
 
     	if s >= 30:
-    		bidali.mailez(tenp)
+    		# bidali.mailez(tenp)
             bidali.datubasera(tenp)
     		s = 0
 
