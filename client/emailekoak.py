@@ -1,9 +1,12 @@
 import smtplib
 
+def get_pass():
+	return open("pasahitza.txt").read().split("\n")[0]
+
 def tenpemailez(tenperatura):
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
-    pasahitza = open("pasahitza.txt").read().split("\n")[0]
+    pasahitza = get_pass()
 	server.login("birrakomandoa@gmail.com", pasahitza)
 
 	msg = str(tenperatura)

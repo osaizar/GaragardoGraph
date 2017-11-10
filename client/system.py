@@ -1,8 +1,6 @@
 import os
 import glob
 import time
-import smtplib
-import RPi.GPIO as GPIO
 
 import data_logging
 import GPIO
