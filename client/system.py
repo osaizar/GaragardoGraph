@@ -4,7 +4,8 @@ import time
 
 import data_logging
 import GPIO
-import emailekoak
+import bidali
+from models import Tenperatura
 
 s = 0
 piztuta = 0
@@ -38,20 +39,21 @@ def main():
 
     # Main loop
     while True:
-    	datua = read_temp()
-    	print(datua)
-    	data_logging.data_logging(datua)
+    	tenp = Tenperatura(read_temp())
+    	print(str(tenp))
+    	data_logging.data_logging(tenp.tenp)
     	s=s+1
     	GPIO.ledgorriabehin()
-    	if datua >= 10 and piztuta==0:
+    	if tenp.tenp >= 10 and piztuta == 0:
     		GPIO.konjeladoreapiztu()
     		piztuta=1
-    	if datua < 9.6 and piztuta==1:
+    	if tenp.tenp < 9.6 and piztuta == 1:
     		GPIO.konjeladoreaitzali()
     		piztuta=0
 
     	if s >= 30:
-    		emailekoak.tenpemailez(datua)
+    		bidali.mailez(tenp)
+            bidali.datubasera(tenp)
     		s = 0
 
     	time.sleep(30)
