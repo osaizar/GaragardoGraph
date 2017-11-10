@@ -8,4 +8,4 @@ class Tenperatura:
         # Garagardoa id bat da, ze garagardo egin den ikusteko, oraingoz beti 1
 
     def __str__(self):
-        return "Tenperatura : "+str(self.tenp)+"ºC"
+        return "Tenperatura : "+str(self.tenp)+" C"

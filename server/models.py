@@ -13,6 +13,9 @@ class Tenperatura(Base):
         self.tenp = tenp
         self.garagardoa = garagardoa
 
+    def serialize(self):
+        return {"id" : self.id, "tenp" : self.tenp, "data" : self.data, "garagardoa" : self.garagardoa}
+
 class Garagardoa(Base):
     __tablename__ = "garagardoa"
     id = Column(Integer, primary_key=True)
