@@ -4,7 +4,6 @@ from models import Tenperatura, Garagardoa
 import os
 
 def main():
-    os.system("rm database.db")
     Base.metadata.create_all(engine)
 
     db_session.add(Garagardoa("Lehenengo garagardoa"))
