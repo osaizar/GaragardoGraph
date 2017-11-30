@@ -2,9 +2,7 @@ import smtplib
 import requests
 import json
 
-#BASE_URL = "http://beer.zerbitzaria.ovh"
-
-BASE_URL = "http://localhost:5000"
+BASE_URL = "http://beer.zerbitzaria.ovh"
 
 def get_pass():
 	return open("pasahitza.txt").read().split("\n")[0]

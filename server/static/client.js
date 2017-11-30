@@ -29,7 +29,7 @@ function getTemps() {
 }
 
 function showCurrent(){
-  $("#currTemp").html(temps[0].tenp);
+  $("#currTemp").html(temps[temps.length-1].tenp);
 }
 
 function createGraph() {
