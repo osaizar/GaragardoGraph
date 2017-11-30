@@ -12,9 +12,10 @@ def add(data):
         return False
 
 def get_current_temps():
-    #try:
-    garId = db_session.query(func.max(Garagardoa.id)).scalar()
-    temps = Tenperatura.query.filter(Tenperatura.garagardoa == garId).all()
-    return temps
-    #except:
-    #    return False
+    try:
+        garId = db_session.query(func.max(Garagardoa.id)).scalar()
+        print str(garId)
+        temps = Tenperatura.query.filter(Tenperatura.garagardoa == garId).all()
+        return temps
+    except:
+        return False

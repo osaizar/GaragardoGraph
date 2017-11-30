@@ -9,6 +9,10 @@ ADDR = "0.0.0.0"
 app = Flask(__name__)
 
 # Importak
+@app.route("/client.js")
+def get_client_js():
+	return app.send_static_file("client.js")
+
 @app.route("/assets/<path:path>")
 def get_asset(path):
 	return app.send_static_file("assets/"+path)

@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+		<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="/assets/css/client.css"/>
 		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="/images/beer.ico">
 	</head>
@@ -24,11 +26,11 @@
 				<!-- Main -->
 					<section id="main">
 						<header>
-							<h1>Hemen grafikoa doa</h1>
+							<h1 id="tempDiv"><span id="currTemp"></span>ºC</h1>
 						</header>
 						<hr/>
 						<footer>
-							<p>Zer jarri daiteke hemen?</p>
+							<div id="chartdiv"><div/>
 						</footer>
 					</section>
 
@@ -49,6 +51,11 @@
 					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 				}
 			</script>
-
+			<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+			<script src="/assets/js/amcharts.js"></script>
+			<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+			<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+			<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+			<script src="/client.js"></script>
 	</body>
 </html>
