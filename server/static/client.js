@@ -78,14 +78,16 @@ function createGraph() {
           "scrollbarHeight": 20
       },
       "chartCursor": {
-         "limitToGraph":"g1"
+          "categoryBalloonDateFormat": "JJ:NN, DD MMMM",
+          "cursorPosition": "mouse"
       },
       "categoryField": "data",
       "categoryAxis": {
           "parseDates": true,
           "axisColor": "#DADADA",
           "dashLength": 1,
-          "minorGridEnabled": true
+          "minorGridEnabled": true,
+          "minPeriod": "mm"
       },
   });
 
