@@ -6,3 +6,10 @@
 #currTemp {
   font-size : 60pt;
 }
+
+.copyright{
+	text-align: center;
+	color : black;
+	border-radius: 25px;
+	padding : 20px;
+}
