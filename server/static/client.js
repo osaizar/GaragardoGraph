@@ -1,19 +1,27 @@
 var temps;
+var chart;
 
 window.onload = function() {
-  getTemps();
+  getTemps(function() {
+    showCurrent();
+    createGraph();
+  });
+
   setInterval(function() {
-    getTemps();
+    getTemps(function() {
+      showCurrent();
+      chart.dataProvider = temps;
+      chart.validateData();
+    });
   }, 30000); // 30 segunduro datu berria dago
 }
 
-function getTemps() {
+function getTemps(callback) {
   $.ajax({
       success: function(data){
         if (data.success){
           temps = data.temps;
-          showCurrent();
-          createGraph();
+          callback();
         }else{
           alert(data.error);
         }
@@ -37,7 +45,7 @@ function showCurrent(){
 
 function createGraph() {
   var chartData = temps;
-  var chart = AmCharts.makeChart("chartdiv", {
+  chart = AmCharts.makeChart("chartdiv", {
       "type": "serial",
       "theme": "light",
       "marginRight": 80,
@@ -87,5 +95,5 @@ function createGraph() {
 
 function zoomChart() {
     // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-    chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
+    chart.zoomToIndexes(temps.length - 40, temps.length - 1);
 }
