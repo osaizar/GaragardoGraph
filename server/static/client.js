@@ -2,6 +2,9 @@ var temps;
 
 window.onload = function() {
   getTemps();
+  setInterval(function() {
+    getTemps();
+  }, 30000); // 30 segunduro datu berria dago
 }
 
 function getTemps() {
