@@ -7,8 +7,17 @@ import GPIO
 import bidali
 from models import Tenperatura
 
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+base_dir = '/sys/bus/w1/devices/'
+device_folder = glob.glob(base_dir + '28*')[0]
+device_file = device_folder + '/w1_slave'
+
+
 s = 0
-piztuta = 0
+goran = 1
+hasera = 1
+estufa = 0
 
 def read_temp_raw():
     f = open(device_file, 'r')
@@ -38,25 +47,43 @@ def main():
     device_file = device_folder + '/w1_slave'
 
     # Main loop
-    while True:
-    	tenp = Tenperatura(read_temp())
-    	print(str(tenp))
+
+
+while True:
+    tenp = Tenperatura(read_temp())
+    print (str(tenp))
+
+    if s==60:
     	data_logging.data_logging(tenp.tenp)
-    	s=s+1
-    	GPIO.ledgorriabehin()
-    	if tenp.tenp >= 10 and piztuta == 0:
-    		GPIO.konjeladoreapiztu()
-    		piztuta=1
-    	if tenp.tenp < 9.6 and piztuta == 1:
-    		GPIO.konjeladoreaitzali()
-    		piztuta=0
 
-    	if s >= 30:
-    		# bidali.mailez(tenp)
-            bidali.datubasera(tenp)
-    		s = 0
+    if tenp.tenp >= 20 and (goran == 0 or hasera==1):
+    	GPIO.konjeladoreapiztu()
+    	GPIO.estufaitzali()
+        goran=1
+    	hasera=0
+    	estufa=0
 
-    	time.sleep(30)
+    if tenp.tenp < 20 and (goran == 1 or hasera==1):
+    	GPIO.konjeladoreaitzali()
+    	#GPIO.estufapiztu()
+    	estufa=1
+        goran=0
+    	hasera=0
+
+    if estufa == 1:
+    	GPIO.estufapiztu()
+    	time.sleep(4)
+    	GPIO.estufaitzali()
+    	time.sleep(4)
+
+
+    if s==60:
+    	#bidali.mailez(tenp.tenp)
+        bidali.datubasera(tenp)
+    	s = 0
+
+    s=s+1
+    time.sleep(1)
 
 if __name__ == "__main__":
     main()
