@@ -32,7 +32,7 @@ def get_index():
 @validate_schema("add_temp")
 def add_temp():
 	data = request.get_json(silent = True)
-	tenp = Tenperatura(data["tenp"], data["garagardoa"])
+	tenp = Tenperatura(data[""], db.get_garagardo_id())
 	if not db.add(tenp):
 		return jsonify({"error": "Datu basean arazo bat gertatu da"}), 500
 	else:

@@ -19,3 +19,9 @@ def get_current_temps():
         return temps
     except:
         return False
+
+def get_garagardo_id():
+    try:
+       return db_session.query(func.max(Garagardoa.id)).scalar()
+    except:
+       return False
